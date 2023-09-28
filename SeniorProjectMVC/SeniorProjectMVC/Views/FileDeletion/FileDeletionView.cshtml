@@ -1,0 +1,16 @@
+﻿@model BaseUserModel
+@{
+	ViewBag.Title = "Gallery";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<div class="tac">
+		<p>Your image has been successfully deleted</p>
+		<button class="btn btn-primary"><a class="btn" href="/Gallery">Return to Gallery</a></button>
+	</div>
+</body>

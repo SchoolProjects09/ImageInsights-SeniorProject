@@ -1,0 +1,28 @@
+﻿
+<form name="uploadForm"
+	  class="tac"
+	  method="post"
+	  enctype="multipart/form-data"
+	  id="form"
+	  data-ajax="true"
+	  data-ajax-url="/Upload"
+	  data-ajax-update="#form">
+
+	<div>
+		<label>Name:</label>
+		<input class="input" type="text" name="Name" />
+	</div>
+
+	<div class="mt-8">
+		<label class="d-block mb-4">Description:</label>
+		<textarea class="input" name="Description" maxlength="250"
+				  rows="5" cols="50" placeholder="Write your description here..."></textarea>
+	</div>
+
+	<div class="mt-8">
+		<input class="input file-input" accept=".png,.jpg"
+			   type="file" id="input" name="Files" />
+		<button class="button" type="submit">Submit</button>
+		<p>Sorry, but you need to be logged in to upload images. Please click <a href="/Login">Here</a> to log in or <a href="/Register">Here</a> to register.</p>
+	</div>
+</form>

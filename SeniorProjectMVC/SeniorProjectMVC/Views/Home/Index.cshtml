@@ -1,0 +1,19 @@
+﻿@model BaseUserModel
+@{
+    ViewBag.Title = "Home Page";
+    if (Model.Data != null)
+    {
+        ViewBag.IsLoggedIn = "True";
+        ViewBag.Username = Model.Data.UserName;
+    }
+}
+
+<body>
+    <div class="tac">
+        <h2>Welcome!</h2>
+        <p class="m-4">This is a website created as a senior project.</p>
+        <p class="m-4">
+            Click <a href="/Info">Here</a> for additional information and <a href="/Gallery">Here</a> to visit the main page.
+        </p>
+    </div>
+</body>

@@ -1,0 +1,53 @@
+﻿@model ValidateErrorModel
+@{
+	ViewData["Title"] = "Upload Image";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<h3 class="tac mb-8">Upload File to Database:</h3>
+
+	<div>
+		<form name="uploadForm"
+			  class="tac"
+			  method="post"
+			  enctype="multipart/form-data"
+			  onsubmit="return(validateForm());"
+			  action="/Upload">
+			
+			<div>
+				<label>Name:</label>
+				<input class="input" type="text" name="Name" value=@Model.Name/>
+				@if (Model.NameFail)
+				{
+				<b class="red d-block">Please enter a valid name. Names must be less than 50 characters.</b>
+				}
+			</div>
+
+			<div class="mt-8">
+				<label class="d-block mb-4">Description:</label>
+				<textarea class="input" name="Description" maxlength="250"
+					rows="5" cols="50" placeholder="Write your description here...">@Model.Description</textarea>
+				@if (Model.DescriptionFail)
+				{
+				<b class="red d-block">Please enter a valid description. Descriptions must be less than 250 characters.</b>
+				}
+			</div>
+			
+			<div class="mt-8">
+				<input class="input file-input" accept=".png,.jpg"
+					   type="file" id="input" name="Files" />
+				<button class="button" type="submit">Submit</button>
+				@if (Model.FileErrorMsg != null)
+				{
+				<b class="red d-block">@Model.FileErrorMsg</b>
+				}
+			</div>
+		</form>
+	</div>
+
+</body>

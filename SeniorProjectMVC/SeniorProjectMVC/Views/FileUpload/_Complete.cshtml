@@ -1,0 +1,20 @@
+﻿
+<form name="uploadForm"
+	  class="tac"
+	  method="post"
+	  enctype="multipart/form-data"
+	  id="form"
+	  data-ajax="true"
+	  data-ajax-url="/Upload"
+	  data-ajax-update="#form"
+	  data-ajax-loading="#loader">
+
+	<div class="tac">
+		<h1 class="mb-4">Upload successful!</h1>
+		<p>
+			Your image has been successfully uploaded! Click
+			<a href='@Url.Content("~/View/" + Model.Path)'>Here</a> to view it.
+		</p>
+	</div>
+
+</form>

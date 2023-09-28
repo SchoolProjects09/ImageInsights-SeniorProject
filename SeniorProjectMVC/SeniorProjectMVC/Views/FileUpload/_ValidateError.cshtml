@@ -1,0 +1,44 @@
+﻿@model ValidateErrorModel
+
+<form name="uploadForm"
+	  class="tac"
+	  method="post"
+	  enctype="multipart/form-data"
+	  onsubmit="return(validateForm());"
+	  id="form"
+	  data-ajax="true"
+	  data-ajax-url="/Upload"
+	  data-ajax-update="#form"
+	  data-ajax-loading="#spinner"
+	  data-ajax-begin="onAjax">
+
+	<div>
+		<label>Name:</label>
+		<input class="input" type="text" name="Name" value=@Model.Name />
+		@if (Model.NameFail)
+		{
+			<b id="error1" class="red d-block">Please enter a valid name. Names must be less than 50 characters.</b>
+		}
+	</div>
+
+	<div class="mt-8">
+		<label class="d-block mb-4">Description:</label>
+		<textarea class="input" name="Description" maxlength="250"
+				  rows="5" cols="50" placeholder="Write your description here...">@Model.Description</textarea>
+		@if (Model.DescriptionFail)
+		{
+			<b id="error2" class="red d-block">Please enter a valid description. Descriptions must be less than 250 characters.</b>
+		}
+	</div>
+
+	<div class="mt-8">
+		<input class="input file-input" accept=".png,.jpg"
+			   type="file" id="input" name="Files" />
+		<button class="button" type="submit">Submit</button>
+		<span id="spinner" class="load-span"><div class="loader"></div></span>
+		@if (Model.FileErrorMsg != null)
+		{
+			<b id="error3" class="red d-block">@Model.FileErrorMsg</b>
+		}
+	</div>
+</form>

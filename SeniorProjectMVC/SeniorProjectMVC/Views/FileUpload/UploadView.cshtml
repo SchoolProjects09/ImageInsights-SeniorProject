@@ -1,0 +1,59 @@
+﻿@model BaseUserModel
+@{
+	ViewData["Title"] = "Upload Image";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<h3 class="tac mb-8">Upload File to Database:</h3>
+
+	<div>
+		<form name="uploadForm"
+			  class="tac"
+			  method="post"
+			  enctype="multipart/form-data"
+			  id="form"
+			  data-ajax="true"
+			  data-ajax-url="/Upload"
+			  data-ajax-update="#form"
+			  data-ajax-loading="#spinner"
+			  data-ajax-begin="onAjax">
+			
+			<div>
+				<label>Name:</label>
+				<input class="input" type="text" name="Name" />
+			</div>
+
+			<div class="mt-8">
+				<label class="d-block mb-4">Description:</label>
+				<textarea class="input" name="Description" maxlength="250"
+					rows="5" cols="50" placeholder="Write your description here..."></textarea>
+			</div>
+			
+			<div class="mt-8">
+				<input class="input file-input" accept=".png,.jpg"
+					   type="file" id="input" name="Files" />
+				<button class="button" type="submit">Submit</button>
+				<span id="spinner" class="load-span"><div class="loader"></div></span>
+			</div>
+		</form>
+	</div>
+
+</body>
+
+<script>
+	onAjax = function() {
+
+		//try {
+		//	var e3 = document.getElementById("error3");
+		//	e3.style.display = "none";
+		//}
+		//catch (err) {
+			
+		//}
+	}
+</script>

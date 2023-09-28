@@ -1,0 +1,70 @@
+﻿@using SeniorProjectMVC.SQL;
+@model ImagePageModel
+@{
+	ViewBag.Title = Model.Image.Name;
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+@{
+	string path = Model.Image.ImageID + Model.Image.Extension;
+	int ID = Model.Image.ImageID;
+	string namePath = Model.Image.Name + Model.Image.Extension;
+
+	<body>
+		<div class="tac img-large">
+			<picture id="picture">
+				<img src='@Url.Content("~/Images/Resized/" + ID + "_400" + Model.Image.Extension)' alt="@Model.Image.Name" onerror="onError()">
+			</picture>
+			<img class="img-large hidden" id="image" alt="@Model.Image.Name" src='@Url.Content("~/Images/" + @path)'>
+		</div>
+
+		<form name="uploadForm"
+			  class="tac"
+			  method="post"
+			  enctype="multipart/form-data"
+			  id="form"
+			  data-ajax="true"
+			  data-ajax-url="/AjaxEdit"
+			  data-ajax-update="#form">
+
+			<div class="tac mb-8">
+				<label>Name:</label>
+				<input class="input" type="text" name="Name" value="@Model.Image.Name"/>
+			</div>
+
+			<div class="tac">
+				<p class="m-4">Image Description:</p>
+				<textarea class="input m-8" name="Description" maxlength="250"
+					rows="5" cols="50">@Model.Image.Description</textarea>
+			</div>
+
+			<div class="tac">
+				<table class="table">
+					<tr>
+						<td>
+							<button class="btn btn-primary"><a class="btn" href="/View/@Model.Image.ImageID">Back</a></button>
+						</td>
+						<td>
+							<button class="btn btn-primary" type="submit">Submit Changes</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+		</form>
+	</body>
+}
+<script>
+	function onError() {
+		//If the picture element cannot load, default to showing the base image, resized to 1200 px
+		//Resizing is done by browser, resulting in a noticeable delay
+		var p = document.getElementById("picture");
+		var i = document.getElementById("image");
+		p.style.display = "none";
+		i.style.display = "inline";
+	}
+</script>

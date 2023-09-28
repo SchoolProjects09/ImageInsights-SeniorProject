@@ -1,0 +1,37 @@
+﻿@model SearchModel
+@{
+	ViewBag.Title = "Search";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+<body>
+	<div class="tac">
+		<p class="H2">Search the Gallery:</p>
+	</div>
+
+	<form name="searchForm"
+		  method="get"
+		  class="tac m-8"
+		  action="/Search">
+		<span>
+			<input class="mr-8" type="search" name="search" value=@Model.Search>
+			<button type="submit" class="btn btn-primary">Search</button>
+		</span>
+	</form>
+
+	<div class="tac">
+		@if (Model.ErrorMessage == null)
+		{
+			Html.RenderPartial("_ImageViewPartial", new ImagePartialModel(
+				Model.Images, Model.URL, Model.Page, Model.IsMobile));
+		}
+		else
+		{
+			<p>Search Error!</p>
+			<p>@Model.ErrorMessage</p>
+		}
+	</div>
+</body>

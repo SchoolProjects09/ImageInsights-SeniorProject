@@ -1,0 +1,31 @@
+﻿@model GalleryModel
+@{
+    ViewBag.Title = "Gallery";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+<body>
+	<div class="tac">
+		<p class="H2">Search the Gallery:</p>
+	</div>
+
+	<form name="searchForm"
+			method="get"
+			class="tac m-8"
+			action="/Search">
+		<span>
+			<input class="mr-8" type="search" name="search">
+			<button type="submit" class="btn btn-primary">Search</button>
+		</span>
+	</form>
+
+	<div class="tac">
+
+		@Html.Partial("_ImageViewPartial", new ImagePartialModel(Model.Images, Model.URL, 
+			Model.Page, Model.IsMobile))
+
+	</div>
+</body>

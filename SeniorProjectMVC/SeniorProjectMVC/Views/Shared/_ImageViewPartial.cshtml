@@ -1,0 +1,67 @@
+﻿@{
+	@model ImagePartialModel;
+
+	string backDisable = "";
+	string nextDisable = "";
+	if (Model.Page == 1)
+	{
+		backDisable = "disabled";
+	}
+	if (Model.Images.Count() < 20)
+	{
+		nextDisable = "disabled";
+	}
+}
+
+<div class="tac d-block mb-16">
+	<button class="btn btn-primary @backDisable">
+		<a class="btn" href="@(Model.URL + "?page=" + (Model.Page-1))">Back</a>
+	</button>
+
+	<label class="m-8-sides">
+		Search page @Model.Page
+	</label>
+
+	<button class="btn btn-primary @nextDisable">
+		<a class="btn" href="@(Model.URL + "?page=" + (Model.Page+1))">Next</a>
+	</button>
+</div>
+
+<div class="table mt-8">
+	@foreach (var image in Model.Images)
+	{
+		string thumb = "";
+
+		//Display Mobile thumbnails if mobile
+		if (Model.IsMobile)
+			thumb = image.ImageID + "_Mthumb";
+		else
+			thumb = image.ImageID + "_thumb";
+
+		<div class="table-item">
+			<div class="gallery-img">
+				<div class="img-wrap">
+					<a href='@Url.Content("~/View/" + image.ImageID)'>
+					<img src='@Url.Content("~/Images/Resized/" + thumb + image.Extension)'
+						alt='@thumb'>
+						</a>
+				</div>
+			</div>
+			<div class="mt-4"> @image.Name </div>
+		</div>
+	}
+</div>
+
+<div class="tac d-block mt-16">
+	<button class="btn btn-primary @backDisable">
+		<a class="btn" href="@(Model.URL + "?page=" + (Model.Page-1))">Back</a>
+	</button>
+
+	<label class="m-8-sides">
+		Search page @Model.Page
+	</label>
+
+	<button class="btn btn-primary @nextDisable">
+		<a class="btn" href="@(Model.URL + "?page=" + (Model.Page+1))">Next</a>
+	</button>
+</div>

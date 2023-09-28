@@ -1,0 +1,15 @@
+﻿@model BaseUserModel
+@{
+	ViewBag.Title = "Error";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<div class="tac">
+		<p>Error! Image not found!</p>
+	</div>
+</body>

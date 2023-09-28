@@ -1,0 +1,38 @@
+﻿@model EditInputValidation
+
+<form name="uploadForm"
+	  class="tac"
+	  method="post"
+	  enctype="multipart/form-data"
+	  id="form"
+	  data-ajax="true"
+	  data-ajax-url="/AjaxEdit"
+	  data-ajax-update="#form">
+
+	<div class="tac mb-8">
+		<label>Name:</label>
+		<input class="input" type="text" name="Name" value="@Model.Name" />
+	</div>
+
+	<div class="tac">
+		<p class="m-4">Image Description:</p>
+		<textarea class="input m-8" name="Description" maxlength="250"
+				  rows="5" cols="50">@Model.Description</textarea>
+	</div>
+
+	<div class="tac">
+		<table class="table">
+			<tr>
+				<td>
+					<button class="btn btn-primary"><a class="btn" href="/View/@Model.ID">Back</a></button>
+				</td>
+				<td>
+					<button class="btn btn-primary" type="submit">Submit Changes</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<meta http-equiv="Refresh" content="0; url='/View/@Model.ID'" />
+
+</form>

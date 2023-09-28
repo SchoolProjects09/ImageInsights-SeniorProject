@@ -1,0 +1,18 @@
+﻿@using SeniorProjectMVC.Models
+@model BaseUserModel
+@{
+	ViewData["Title"] = "Upload Image";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<h3 class="tac mb-8">Upload File to Database:</h3>
+
+	<div class="tac">
+		<p>Sorry, but you need to be logged in to upload images. Please click <a href="/Login">Here</a> to log in or <a href="/Register">Here</a> to register.</p>
+	</div>
+</body>

@@ -1,0 +1,16 @@
+﻿@model FileDeletionErrorModel
+@{
+	ViewBag.Title = "Gallery";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<div class="tac">
+		<p class="H2">Error!</p>
+		<p>@Model.ErrorMsg</p>
+	</div>
+</body>

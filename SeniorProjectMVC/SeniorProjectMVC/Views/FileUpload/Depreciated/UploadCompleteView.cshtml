@@ -1,0 +1,16 @@
+﻿@model UploadCompleteModel
+@{
+	ViewBag.Title = "Upload Success";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+<body>
+	<div class="tac">
+		<h1 class="mb-4">Upload successful!</h1>
+		<p>Your image has been successfully uploaded! Click 
+			<a href='@Url.Content("~/View/" + Model.Path)'>Here</a> to view it.</p>
+	</div>
+</body>

@@ -1,0 +1,83 @@
+﻿@model SeniorProjectMVC.Classes.RegisterInputValidation
+
+<form name="uploadForm"
+	  class="tac"
+	  method="post"
+	  enctype="multipart/form-data"
+	  id="form"
+	  data-ajax="true"
+	  data-ajax-url="/Register"
+	  data-ajax-update="#form">
+
+	<table class="table">
+		<tr>
+			<td>
+				<label>Username:</label>
+			</td>
+			<td>
+				<input class="input" type="text" name="UserName" value="@Model.Input.UserName"/>
+			</td>
+		</tr>
+		@if (Model.IsUserNameFail)
+		{
+		<tr class="tac">
+			<td colspan=2>
+				<b class="red">@Model.UserNameFail</b>
+			</td>
+		</tr>
+		}
+		<tr>
+			<td>
+				<label>Email:</label>
+			</td>
+			<td>
+				<input class="input" type="text" name="Email" value="@Model.Input.Email"/>
+			</td>
+		</tr>
+		@if (Model.IsEmailFail)
+		{
+		<tr class="tac">
+			<td colspan=2>
+				<b class="red">@Model.EmailFail</b>
+			</td>
+		</tr>
+		}
+		<tr>
+			<td>
+				<label>Password:</label>
+			</td>
+			<td>
+				<input class="input" type="password" name="Password1" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Confirm Password:</label>
+			</td>
+			<td>
+				<input class="input" type="password" name="Password2" />
+			</td>
+		</tr>
+		@if (Model.IsPasswordFail)
+		{
+		<tr class="tac">
+			<td colspan=2>
+				<b class="red">@Model.PasswordFail</b>
+			</td>
+		</tr>
+		}
+	</table>
+	<div class="tac mt-4">
+		<button class="button" type="submit">Register</button>
+		@if (Model.ErrorMsg != "")
+		{
+			<b class="red d-block">@Model.ErrorMsg</b>
+		}
+	</div>
+
+	@if (Model.Validated && Model.ErrorMsg == "")
+	{
+		<meta http-equiv="refresh" content="0; url='/Account'"  />
+	}
+
+</form>

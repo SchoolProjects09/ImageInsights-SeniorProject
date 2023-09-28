@@ -1,0 +1,59 @@
+﻿@model SeniorProjectMVC.Classes.RegisterInputValidation
+@{
+	ViewData["Title"] = "Register";
+}
+
+<body>
+	<h3 class="tac mb-8">Enter Account Information to Register:</h3>
+
+	<div>
+		<form name="uploadForm"
+			  class="tac"
+			  method="post"
+			  enctype="multipart/form-data"
+			  action="/Register">
+
+			<div>
+				<label>Username:</label>
+				<input class="input" type="text" name="UserName" value="@Model.Input.UserName" />
+				@if (Model.IsUserNameFail)
+				{
+					<b class="red d-block">@Model.UserNameFail</b>
+				}
+			</div>
+
+			<div class="mt-4">
+				<label>Email:</label>
+				<input class="input" type="text" name="Email" value="@Model.Input.Email"/>
+				@if (Model.IsEmailFail)
+				{
+					<b class="red d-block">@Model.EmailFail</b>
+				}
+			</div>
+
+			<div class="mt-4">
+				<label>Password:</label>
+				<input class="input" type="password" name="Password1" />
+			</div>
+
+			<div class="mt-4">
+				<label>Confirm Password:</label>
+				<input class="input" type="password" name="Password2" />
+				@if (Model.IsPasswordFail)
+				{
+					<b class="red d-block">@Model.PasswordFail</b>
+				}
+			</div>
+
+			<div class="mt-4">
+				<button class="button" type="submit">Register</button>
+				@if (Model.ErrorMsg != "")
+				{
+					<b class="red d-block">@Model.ErrorMsg</b>
+				}
+			</div>
+			
+		</form>
+	</div>
+
+</body>

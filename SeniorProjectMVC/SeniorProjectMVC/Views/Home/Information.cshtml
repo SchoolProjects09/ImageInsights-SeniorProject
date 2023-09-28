@@ -1,0 +1,24 @@
+﻿@model BaseUserModel
+@{
+    ViewBag.Title = "Information Page";
+    if (Model.Data != null)
+    {
+        ViewBag.IsLoggedIn = "True";
+        ViewBag.Username = Model.Data.UserName;
+    }
+}
+
+<body>
+    <div class="tac">
+        <h2>Information:</h2>
+        <p class="mt-4">
+            Website created by Alex Porter for senior project 2023. 
+        </p>
+        <p class="mt-4">
+            The goal of this website is to emulate existing websites while showing how complicated modern websites are, which is something we rarely think about due to the prevalence of the Internet.
+        </p>
+        <p class="mt-4">
+            Images retrieved from <a href="https://pixabay.com/">Pixabay</a>.
+        </p>
+    </div>
+</body>

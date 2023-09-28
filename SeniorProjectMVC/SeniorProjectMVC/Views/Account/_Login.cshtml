@@ -1,0 +1,44 @@
+﻿@using SeniorProjectMVC.Classes
+@model AccountInputValidation
+
+<form name="uploadForm"
+	  class="tac"
+	  method="post"
+	  enctype="multipart/form-data"
+	  id="form"
+	  data-ajax="true"
+	  data-ajax-url="/Login"
+	  data-ajax-update="#form">
+
+	<div>
+		<label>Username:</label>
+		<input class="input" type="text" name="UserName" value="@Model.UserName" />
+		@if (Model.IsUserNameFail)
+		{
+			<b class="red d-block">Please enter a valid username. Usernames must be less than 50 characters.</b>
+		}
+	</div>
+
+	<div class="mt-4">
+		<label>Password:</label>
+		<input class="input" type="password" name="Password" />
+		@if (Model.IsPasswordFail)
+		{
+			<b class="red d-block">Please enter a valid password. Passwords must be less than 50 characters.</b>
+		}
+	</div>
+
+	<div class="mt-4">
+		<button class="button" type="submit">Log In</button>
+		@if (Model.LoginFail)
+		{
+			<b class="red d-block">Account not found. Did you type everything in correctly?</b>
+		}
+	</div>
+
+	@if (Model.Validated && !Model.LoginFail)
+	{
+		<meta http-equiv="refresh" content="0; url='/Account'" />
+	}
+
+</form>

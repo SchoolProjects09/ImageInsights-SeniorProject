@@ -1,0 +1,17 @@
+﻿@using SeniorProjectMVC.Models
+@model AccountModel
+@{
+	ViewData["Title"] = "Error";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<div class="tac">
+		<p class="H2">Error!</p>
+		<p>The selected user ID does not belong to a user.</p>
+	</div>
+</body>

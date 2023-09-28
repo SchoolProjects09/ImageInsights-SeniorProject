@@ -1,0 +1,60 @@
+﻿@{
+	ViewData["Title"] = "Register";
+}
+
+<body>
+	<h3 class="tac mb-8">Enter Account Information to Register:</h3>
+
+	<div>
+		<form name="uploadForm"
+			  class="tac"
+			  method="post"
+			  enctype="multipart/form-data"
+			  id="form"
+			  data-ajax="true"
+			  data-ajax-url="/Register"
+			  data-ajax-update="#form">
+
+
+			<table class="table">
+				<tr>
+					<td>
+						<label>Username:</label>
+					</td>
+					<td>
+						<input class="input" type="text" name="UserName" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Email:</label>
+					</td>
+					<td>
+						<input class="input" type="text" name="Email" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Password:</label>
+					</td>
+					<td>
+						<input class="input" type="password" name="Password1" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Confirm Password:</label>
+					</td>
+					<td>
+						<input class="input" type="password" name="Password2" />
+					</td>
+				</tr>
+			</table>
+			<div class="tac mt-4">
+				<button class="button" type="submit">Register</button>
+			</div>
+			
+		</form>
+	</div>
+
+</body>

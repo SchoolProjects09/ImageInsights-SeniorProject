@@ -1,0 +1,21 @@
+﻿@using SeniorProjectMVC.Models
+@model AccountModel
+@{
+	ViewData["Title"] = "Your Account";
+	if (Model.Data != null)
+	{
+		ViewBag.IsLoggedIn = "True";
+		ViewBag.Username = Model.Data.UserName;
+	}
+}
+
+<body>
+	<div class="tac">
+		<p class="H2">Hi @Model.Data.UserName! Here are your uploaded images:</p>
+	</div>
+
+	<div class="tac">
+		@Html.Partial("_ImageViewPartial", new ImagePartialModel(
+			Model.Images, Model.URL, Model.Page, Model.IsMobile))
+	</div>
+</body>

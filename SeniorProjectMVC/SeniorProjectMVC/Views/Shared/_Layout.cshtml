@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewBag.Title</title>
+        <!--link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /-->
+        <link rel="stylesheet" href="~/css/base.css" />
+        <link rel='icon' href='~/favicon.ico' type='image/x-icon' />
+    </head>
+    <body class="blue">
+        <header>
+            <div class="navbar">
+                <a href="/Gallery" role="button">Gallery</a>
+                <a href="/Upload" role="button">Upload</a>
+
+                <span class="right">
+                @{
+                    if (@ViewBag.IsLoggedIn == "True")
+                    {
+                        <a href="/Account">@ViewBag.Username</a>
+                        <a href="/Favorites">Favorites</a>
+                        <a href="/Logout" role="button">Log Out</a>
+
+                        <!--div class="dropdown">
+                            <button class="dropBtn">
+                                ViewBag.Username
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/Account" role="button">Account</a>
+                                <a href="/Logout" role="button">Log Out</a>
+                            </div>
+                        </div-->
+                    }
+                    else
+                    {
+                        <a href="/Login" role="button">Log In</a>
+                        <a href="/Register" role="button">Register</a>
+                    }
+                }
+                    <!--a asp-area="Identity" asp-page="/Account/Login">Log In</a-->
+                    <!--a asp-area="Identity" asp-page="/Account/Register">Register</a-->
+                </span>
+            </div>
+        </header>
+        <div class="container mainBody">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery/dist/Ajax.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>
