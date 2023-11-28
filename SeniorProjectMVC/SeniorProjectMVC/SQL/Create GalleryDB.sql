@@ -389,13 +389,9 @@ Create Procedure dbo.ToggleFavorite
 As
 Begin
 	Set Nocount On
+	Begin Transaction
 
-	IF Exists (Select Top 1 Favorited From Favorites Where ImageID = @ImageID And UserID = @UserID)
-	Begin
-		Declare @Fav TinyInt
-		Set @Fav = (Select Top 1 Favorited From Favorites Where ImageID = @ImageID And UserID = @UserID)
-
-		If @Fav = 1
+		IF Exists (Select Top 1 Favorited From Favorites Where ImageID = @ImageID And UserID = @UserID)
 		Begin
 			Delete From dbo.Favorites Where ImageID = @ImageID And UserID = @UserID
 
@@ -403,17 +399,12 @@ Begin
 		End
 		Else
 		Begin
-			Update dbo.Favorites Set Favorited = 1 Where ImageID = @ImageID And UserID = @UserID
+			Insert into dbo.Favorites values(@UserID, @ImageID, 1)
 
-			Select 1 As ReturnID, 'Success - Favorited' As Message
+			Select 1 As ReturnID, 'Success - Added' As Message
 		End
-	End
-	Else
-	Begin
-		Insert into dbo.Favorites values(@UserID, @ImageID, 1)
 
-		Select 1 As ReturnID, 'Success - Added' As Message
-	End
+	Commit Transaction
 End
 Go
 
@@ -425,17 +416,7 @@ Begin
 
 	IF Exists (Select Top 1 Favorited From Favorites Where ImageID = @ImageID And UserID = @UserID)
 	Begin
-		Declare @Fav TinyInt
-		Set @Fav = (Select Top 1 Favorited From Favorites Where ImageID = @ImageID And UserID = @UserID)
-
-		If @Fav = 1
-		Begin
-			Select 1 As ReturnID, 'Favorited' As Message
-		End
-		Else
-		Begin
-			Select 0 As ReturnID, 'UnFavorited' As Message
-		End
+		Select 1 As ReturnID, 'Favorited' As Message
 	End
 	Else
 	Begin
