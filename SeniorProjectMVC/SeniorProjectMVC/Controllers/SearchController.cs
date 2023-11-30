@@ -14,8 +14,10 @@ namespace SeniorProjectMVC.Controllers
             string url = "/Search";
 
             int pageNum;
-            if (page == null)
+            if (page == null || page == "0")
+            {
                 pageNum = 1;
+            }
             else
             {
                 if (!int.TryParse(page, out pageNum))
